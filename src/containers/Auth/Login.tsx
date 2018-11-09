@@ -5,17 +5,20 @@ import Card from '../../components/Card';
 import Container from '../../components/Container';
 import LoginForm from '../../components/LoginForm';
 import Title from '../../components/Title';
+import { ILogin, login as login_thunk,  } from '../../ducks/Users'
 
-import { login } from '../../ducks/Users'
+interface ILoginProps {
+    login: (a: ILogin) => void
+}
 
-
-class Login extends React.Component {
+class Login extends React.Component<ILoginProps> {
     public render() {
+        const { login } = this.props
         return (
             <Container center={ true } >
                 <Card>
                     <Title>Iniciar Sesión</Title>
-                    <LoginForm />
+                    <LoginForm onSubmit={ login } />
                 </Card>
             </Container>
         )
@@ -24,7 +27,7 @@ class Login extends React.Component {
 
 const mapStateToProps = (state: any) => state
 const mapDispatchToProps = (dispatch: any) => ({
-    login: (payload: any) => dispatch(login(payload))
+    login: (payload: any) => dispatch(login_thunk(payload))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)
