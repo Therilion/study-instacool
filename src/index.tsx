@@ -6,6 +6,7 @@ import * as ReactDOM from 'react-dom'
 import { Provider } from "react-redux"
 import { Router } from "react-router"
 import { applyMiddleware, combineReducers, createStore } from "redux"
+import { reducer as formReducer } from "redux-form";
 import thunk from "redux-thunk";
 
 import App from './App'
@@ -13,9 +14,11 @@ import * as reducers from './ducks'
 import registerServiceWorker from './registerServiceWorker'
 import services from './services';
 
+
 const history = createHistory()
 const store = createStore(combineReducers({
-  ...reducers
+  ...reducers,
+  form: formReducer, 
 }), applyMiddleware(thunk.withExtraArgument(services)))
 
 

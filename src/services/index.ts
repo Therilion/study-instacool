@@ -8,7 +8,7 @@ const services = {
 export default services
 
 export interface IServices {
-    auth: auth.Auth
-    db: firestore.Firestore
-    storage: storage.Storage
+    auth    : auth.Auth
+    db      : firestore.Firestore
+    storage : storage.Storage
 }
