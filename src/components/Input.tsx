@@ -36,9 +36,4 @@ const Input: React.StatelessComponent<WrappedFieldProps & IInputProps> = props =
     
 }
 
-export const customKeyPress = (e:any) => {
-    // tslint:disable-next-line:no-console
-    console.log(e);
-}
-
 export default Input

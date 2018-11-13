@@ -4,7 +4,7 @@ import { Field, InjectedFormProps, reduxForm } from "redux-form";
 
 import Button from './Button';
 import Center from './Center';
-import Input, { customKeyPress } from './Input';
+import Input from './Input';
 
 
 class LoginForm extends React.Component<InjectedFormProps> {
@@ -15,7 +15,7 @@ class LoginForm extends React.Component<InjectedFormProps> {
         console.log(this.props)
       return (
         <form onSubmit={ handleSubmit }>
-            <Field label='Correo'  placeholder='Correo' name='email' type='email' component={Input} onKeyPress={customKeyPress} />
+            <Field label='Correo'  placeholder='Correo' name='email' type='email' component={Input} />
             <Field label='Password' placeholder='Password' name='password' type='password' component={Input} />
             <Button block={ true } >Enviar</Button>
             <Center>
