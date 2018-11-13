@@ -1,12 +1,12 @@
 import * as firebase from "firebase";
 
 const config = {
-    apiKey: "AIzaSyAbBGDnXYPnMQaQFhPzHtRV3naW972OCDc",
-    authDomain: "th-instacool.firebaseapp.com",
-    databaseURL: "https://th-instacool.firebaseio.com",
-    messagingSenderId: "590169519984",
-    projectId: "th-instacool",
-    storageBucket: "th-instacool.appspot.com",
+    apiKey            : "",
+    authDomain        : "",
+    databaseURL       : "",
+    messagingSenderId : "",
+    projectId         : "",
+    storageBucket     : "",
   };
   firebase.initializeApp(config);
 
