@@ -1,8 +1,8 @@
 import * as firebase from "firebase";
 
-import config from "../config/firebase-config";
+import firebaseConfig from "../config/firebase-config";
 
-firebase.initializeApp(config);
+firebase.initializeApp(firebaseConfig);
 
 const firestore = firebase.firestore()
 const settings = {timestampsInSnapshots: true}
