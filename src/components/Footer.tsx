@@ -17,15 +17,21 @@ const style = {
         marginLeft: '-15px', 
         width: 'calc(100% + 30px)'
     } ,
-} 
+}
 
-export default class Footer extends React.Component {
+interface IFooterProps {
+    like:  () => void
+    share: () => void
+}
+
+export default class Footer extends React.Component<IFooterProps> {
     public render() {
-      return (
-        <div style={style.footer}>
-            <div style={ style.buttons }><FontAwesomeIcon icon={faThumbsUp} /> Like</div>
-            <div style={ style.buttons }><FontAwesomeIcon icon={faRetweet} /> Share</div>
-        </div>
-      )
+        const { like, share } = this.props
+        return (
+            <div style={style.footer}>
+                <div onClick={like} style={ style.buttons }><FontAwesomeIcon icon={faThumbsUp} /> Like</div>
+                <div onClick={share} style={ style.buttons }><FontAwesomeIcon icon={faRetweet} /> Share</div>
+            </div>
+        )
     }
 }

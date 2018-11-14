@@ -16,6 +16,7 @@ import services from './services';
 
 
 const history = createHistory()
+
 const store = createStore(combineReducers({
   ...reducers,
   form: formReducer, 
@@ -26,7 +27,7 @@ const store = createStore(combineReducers({
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <App />
+      <App history={history} />
     </Router>
   </Provider>
   ,document.getElementById('root') as HTMLElement

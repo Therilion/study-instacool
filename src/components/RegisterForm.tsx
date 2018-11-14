@@ -7,7 +7,7 @@ import Center from './Center';
 import Input from './Input';
 
 
-class LoginForm extends React.Component<InjectedFormProps> {
+class RegisterForm extends React.Component<InjectedFormProps> {
     public render() {
         const { handleSubmit } = this.props
 
@@ -17,7 +17,7 @@ class LoginForm extends React.Component<InjectedFormProps> {
             <Field label='Password' placeholder='Password' name='password' type='password' component={Input} />
             <Button block={ true } >Enviar</Button>
             <Center>
-                <Link to='/register'>Registrar</Link>
+                <Link to='/'>Iniciar sesión</Link>
             </Center>
         </form>
       )
@@ -25,5 +25,5 @@ class LoginForm extends React.Component<InjectedFormProps> {
 }
 
 export default reduxForm({
-    form: 'login',
-})(LoginForm)
+    form: 'register',
+})(RegisterForm)

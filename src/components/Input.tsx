@@ -26,11 +26,11 @@ interface IInputProps {
 // Componente puro. Componente sin estado. Más facil de escribir y testear,
 // Pero no accede al ciclo de vida de los componentes de React
 const Input: React.StatelessComponent<WrappedFieldProps & IInputProps> = props => {
-    const { label } = props
+    const { input, label } = props
     return (
         <div>
             <span style={ spanStyle }>{ label }</span>
-            <input { ...props } style={ style } />
+            <input {...input } { ...props } style={ style } />
         </div>
     )
     
