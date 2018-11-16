@@ -6,12 +6,14 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.8",
     "@fortawesome/free-solid-svg-icons": "^5.5.0",
     "@fortawesome/react-fontawesome": "^0.1.3",
+    "@types/lodash": "^4.14.118",
     "@types/react-redux": "^6.0.9",
     "@types/react-router": "^4.4.1",
     "@types/react-router-dom": "^4.3.1",
     "@types/redux-form": "^7.4.12",
     "firebase": "^5.5.8",
     "history": "^4.7.2",
+    "lodash": "^4.17.11",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-loadable": "^5.5.0",
@@ -35,5 +37,6 @@
     "@types/react": "^16.4.18",
     "@types/react-dom": "^16.0.9",
     "typescript": "^3.1.4"
-  }
+  },
+  "proxy": "http://localhost:5000/th-instacool/us-central1"
 }

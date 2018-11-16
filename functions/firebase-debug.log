@@ -1,0 +1,32 @@
+[debug] [2018-11-16T20:37:38.087Z] ----------------------------------------------------------------------
+[debug] [2018-11-16T20:37:38.090Z] Command:       /usr/bin/node /home/pescobar/.yarn/bin/firebase serve --only functions
+[debug] [2018-11-16T20:37:38.091Z] CLI Version:   6.1.0
+[debug] [2018-11-16T20:37:38.091Z] Platform:      linux
+[debug] [2018-11-16T20:37:38.091Z] Node Version:  v10.13.0
+[debug] [2018-11-16T20:37:38.092Z] Time:          Fri Nov 16 2018 17:37:38 GMT-0300 (Chile Summer Time)
+[debug] [2018-11-16T20:37:38.092Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-11-16T20:37:38.109Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-11-16T20:37:38.110Z] > authorizing via signed-in user
+[debug] [2018-11-16T20:37:38.111Z] [iam] checking project th-instacool for permissions ["firebase.projects.get"]
+[debug] [2018-11-16T20:37:38.116Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2018-11-16T20:37:38.117Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2018-11-16T20:37:38.273Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-16T20:37:38.312Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/th-instacool:testIamPermissions  
+
+[debug] [2018-11-16T20:37:39.311Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-16T20:37:39.314Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/th-instacool  
+ 
+[debug] [2018-11-16T20:37:40.301Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/home/pescobar/projects/therilion/react/instacool'...
+[info] 
+[info] i  functions: Preparing to emulate functions.
+[debug] [2018-11-16T20:37:40.966Z] Fetching environment
+[debug] [2018-11-16T20:37:40.971Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/590169519984:getServerAppConfig  
+ 
+[debug] [2018-11-16T20:37:41.201Z] <<< HTTP RESPONSE 200
+[debug] [2018-11-16T20:37:41.202Z] Starting @google-cloud/functions-emulator
+[debug] [2018-11-16T20:37:42.857Z] Parsing function triggers
+[info] ✔  functions: api: http://localhost:5000/th-instacool/us-central1/api
