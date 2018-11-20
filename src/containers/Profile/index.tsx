@@ -7,7 +7,11 @@ import { ThunkDispatch } from 'redux-thunk';
 import Button from '../../components/Button';
 import Card from '../../components/Card';
 import ProfileImg from '../../components/ProfileImg';
+import { IState } from '../../ducks';
 import * as postsDuck from '../../ducks/Posts';
+import * as usersDuck from '../../ducks/Posts';
+
+import { submit } from "redux-form"
 import services from "../../services";
 
 const { auth } = services
@@ -27,9 +31,12 @@ const style = {
 
 interface IProfileProps {
   fetchPosts: () => void
+  submitProfileImage: () => void
+  handleProfileImageSubmit: (a: {file: File}) => void
   data: postsDuck.IPosts[][]
   fetched: boolean
   loading: boolean 
+  profileImage: string
 }
 
 class Profile extends React.Component<IProfileProps> {
@@ -45,11 +52,15 @@ class Profile extends React.Component<IProfileProps> {
     }
 
     public render() {
-      const { data } = this.props
+      const { data, profileImage, submitProfileImage, handleProfileImageSubmit } = this.props
       return (
         <div style={style.container}>
           <div style={ style.row }>
-            <ProfileImg />
+            <ProfileImg 
+              profileImage={profileImage} 
+              onSubmit={handleProfileImageSubmit} 
+              submitProfileImage={submitProfileImage} 
+            />
             <Button> Agregar </Button>
           </div>
           { data.map((x, i) => 
@@ -62,9 +73,13 @@ class Profile extends React.Component<IProfileProps> {
     }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: IState) => {
+  
     const { Posts : { data, fetched, fetching} } = state
+    const { Users : { profileImage: temPI } } = state
     const loading = fetching || !fetched
+    const profileImage = temPI || "https://placekitten.com/100/100"
+
     // acc: Acumulador (segundo parámetro de reduce), el: elemento
     const filtered = Object.keys(data).reduce((acc, el) => {
         if(data[el].userId !== (auth.currentUser && auth.currentUser.uid)){
@@ -72,14 +87,29 @@ const mapStateToProps = (state: any) => {
         }
         return acc.concat(data[el])
     }, [] as postsDuck.IPosts[])
+
+    const ordered = filtered.sort((a, b) => {
+      if(a.createdAt.toDate() < b.createdAt.toDate()){
+        return 1
+      }
+      if(a.createdAt.toDate() > b.createdAt.toDate()){
+        return -1
+      }
+      return 0
+    })
     
     return {
-        data: chunk(filtered, 3),
+        data: chunk(ordered, 3),
         fetched,
         loading,
+        profileImage,
     }
 }
 
-const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>) => bindActionCreators(postsDuck, dispatch)
+const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>) => bindActionCreators({ 
+  ...postsDuck,
+  ...usersDuck,
+  submitProfileImage: () => submit('profileImg'),
+}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile)

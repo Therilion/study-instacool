@@ -74,6 +74,7 @@ export default () => {
         
         const snap = await db.collection('posts').doc(postId).get()
         const post = snap.data()
+
         const result = await db.collection('posts').add({
             ...post,
             userId: uid,
@@ -82,8 +83,8 @@ export default () => {
 
         await db.collection('shares').doc().set({
             userId: uid,
-            originalPost: post.postId,
-            postId,
+            originalPost: postId,
+            postId: result.id,
             createdAt: new Date()
         })
 

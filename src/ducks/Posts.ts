@@ -2,6 +2,7 @@ import { firestore } from "firebase";
 import { AnyAction, Dispatch, } from 'redux';
 import { IServices } from '../services';
 import { download } from "../utils";
+import { IState } from './index';
 
 const START = 'posts/fetch-start'
 const SUCCESS = 'posts/fetch-success'
@@ -80,7 +81,7 @@ export default function reducer(state = initialState, action: AnyAction) {
 }
 
 export const fetchPosts = () => 
-    async (dispatch: Dispatch, getState: () => any, { db, storage }: IServices) => {
+    async (dispatch: Dispatch, getState: () => IState, { db, storage }: IServices) => {
         dispatch(fetchStart())
         try {
             const snaps = await db.collection('posts').get()
@@ -109,7 +110,7 @@ export const fetchPosts = () =>
     }
 
 export const like = (id: string) => 
-    async(dispatch: Dispatch, getState: () => any, { auth }: IServices) => {
+    async(dispatch: Dispatch, getState: () => IState, { auth }: IServices) => {
         if(!auth.currentUser){
             return
         }
@@ -123,7 +124,7 @@ export const like = (id: string) =>
     }
 
 export const share = (id: string) => 
-    async(dispatch: Dispatch, getState: () => any, { auth, db, storage }: IServices) => {
+    async(dispatch: Dispatch, getState: () => IState, { auth, db, storage }: IServices) => {
         if(!auth.currentUser){
             return
         }
@@ -148,4 +149,3 @@ export const share = (id: string) =>
             imageUrl
         } } as IDataPosts))
     }
-

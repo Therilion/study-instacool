@@ -5,13 +5,18 @@ import { ThunkDispatch } from 'redux-thunk';
 
 import Container from '../../components/Container';
 import Post from '../../components/Post';
+import { IState } from '../../ducks';
 import * as postsDuck from '../../ducks/Posts';
+
+interface IPosts extends postsDuck.IPosts {
+    postId: string
+}
 
 interface INewsFeedProps {
     fetchPosts: () => void
     like: (a: string) => void
     share: (a: string) => void
-    data: postsDuck.IDataPosts
+    data: IPosts[]
     loading: boolean 
     fetched: boolean
 }
@@ -31,13 +36,14 @@ class NewsFeed extends React.Component<INewsFeedProps> {
         const { data } = this.props
         return (
             <Container>
-                { Object.keys(data).map(x => {
-                    const post = data[x]
-                    return <div key={x} style={{ margin: '0 auto'}}>
+                { data.map(post => {
+
+                    return <div key={post.postId} style={{ margin: '0 auto'}}>
                         <Post 
-                            image={post.imageUrl} 
-                            like={this.handleLike(x)} 
-                            share={this.handleShare(x)}
+                            image={post.imageUrl}
+                            comment={post.comment}
+                            like={this.handleLike(post.postId)} 
+                            share={this.handleShare(post.postId)}
                         />
                     </div>
                 }) }
@@ -60,11 +66,30 @@ class NewsFeed extends React.Component<INewsFeedProps> {
 
 
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: IState) => {
     const { Posts : { data, fetched, fetching} } = state
     const loading = fetching || !fetched
+    const reduced: any = {}
+    reduced.data = []
+    if(!loading && data) {
+        reduced.data = Object.keys(data).reduce((acc, el) => {
+            const { comment, createdAt, imageUrl, userId } = data[el]
+            return acc.concat([{comment, createdAt, imageUrl, userId, postId: el}])
+        }, [] as IPosts[] )
+    }
+
+    const ordered = reduced.data.sort((a: IPosts, b: IPosts) => {
+        if(a.createdAt.toDate() < b.createdAt.toDate()){
+          return 1
+        }
+        if(a.createdAt.toDate() > b.createdAt.toDate()){
+          return -1
+        }
+        return 0
+      })
+    
     return {
-        data,
+        data: ordered,
         fetched,
         loading,
     }

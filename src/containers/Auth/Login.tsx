@@ -6,6 +6,7 @@ import Card from '../../components/Card';
 import Container from '../../components/Container';
 import LoginForm from '../../components/LoginForm';
 import Title from '../../components/Title';
+import { IState } from '../../ducks';
 import { ILogin, login as loginThunk, } from '../../ducks/Users'
 
 interface ILoginProps {
@@ -26,7 +27,7 @@ class Login extends React.Component<ILoginProps> {
     }
 }
 
-const mapStateToProps = (state: any) => state
+const mapStateToProps = (state: IState) => state
 const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>) => ({
     login: (payload: any) => dispatch(loginThunk(payload))
 })

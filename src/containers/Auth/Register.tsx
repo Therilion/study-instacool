@@ -6,6 +6,7 @@ import Card from '../../components/Card';
 import Container from '../../components/Container';
 import RegisterForm from '../../components/RegisterForm';
 import Title from '../../components/Title';
+import { IState } from '../../ducks';
 import { ILogin, register as registerThunk, } from '../../ducks/Users'
 
 interface IRegisterProps {
@@ -27,7 +28,7 @@ class Register extends React.Component<IRegisterProps> {
 }
 
 
-const mapStateToProps = (state: any) => state
+const mapStateToProps = (state: IState) => state
 const mapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>) => ({
     register: (payload: any) => dispatch(registerThunk(payload))
 })
