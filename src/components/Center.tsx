@@ -5,7 +5,7 @@ const style = {
     width: '100%',
 } as React.CSSProperties
 
-export default class Card extends React.Component {
+export default class Center extends React.Component {
 
     public render () {
         

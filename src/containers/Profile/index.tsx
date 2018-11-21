@@ -1,17 +1,16 @@
 import { chunk } from "lodash";
 import * as React from 'react'
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
+import { submit } from "redux-form"
 import { ThunkDispatch } from 'redux-thunk';
-
 import Button from '../../components/Button';
 import Card from '../../components/Card';
 import ProfileImg from '../../components/ProfileImg';
 import { IState } from '../../ducks';
 import * as postsDuck from '../../ducks/Posts';
 import * as usersDuck from '../../ducks/Posts';
-
-import { submit } from "redux-form"
 import services from "../../services";
 
 const { auth } = services
@@ -61,7 +60,9 @@ class Profile extends React.Component<IProfileProps> {
               onSubmit={handleProfileImageSubmit} 
               submitProfileImage={submitProfileImage} 
             />
-            <Button> Agregar </Button>
+            <Link to="/app/upload">
+              <Button> Agregar </Button>
+            </Link>
           </div>
           { data.map((x, i) => 
             <div key={ i } style={ style.row }>

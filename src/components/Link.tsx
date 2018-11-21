@@ -7,7 +7,7 @@ const style = {
     padding : '15px',
 }
 
-export default class Card extends React.Component {
+export default class Link extends React.Component {
 
     public render () {
         return (

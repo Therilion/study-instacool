@@ -3,13 +3,14 @@ import './App.css'
 import * as React from 'react'
 import { Route } from "react-router"
 
-import { History } from "history";
-import Navbar from './components/Navbar';
-import Login from './containers/Auth/Login';
-import Register from './containers/Auth/Register';
-import NewsFeed from './containers/NewsFeed';
-import Profile from './containers/Profile';
-import services from "./services";
+import { History } from "history"
+import Navbar from './components/Navbar'
+import Login from './containers/Auth/Login'
+import Register from './containers/Auth/Register'
+import NewsFeed from './containers/NewsFeed'
+import Profile from './containers/Profile'
+import UploadPost from './containers/Profile/UploadPost'
+import services from "./services"
 
 interface IAppProps {
   history: History
@@ -50,6 +51,7 @@ class App extends React.Component<IAppProps> {
         <Route path='/app' component={ Navbar } />
         <Route exact={ true } path='/app/newsfeed' component={ NewsFeed } />
         <Route exact={ true } path='/app/profile' component={ Profile } />
+        <Route exact={ true } path='/app/upload' component={ UploadPost } />
       </div>
     )
   }

@@ -5,8 +5,8 @@ const style = (center: boolean) :React.CSSProperties => ({
     backgroundColor: '#eee',
     display: 'flex',
     flexDirection: 'column',
-    height: 'calc(100vh - 20px)',
     justifyContent: center ? 'center':undefined,
+    minHeight: 'calc(100vh - 60px)',
     padding: '10px 15px',
     width: 'calc(100vw - 30px)',
 })
