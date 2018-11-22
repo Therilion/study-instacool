@@ -10,7 +10,7 @@ import Card from '../../components/Card';
 import ProfileImg from '../../components/ProfileImg';
 import { IState } from '../../ducks';
 import * as postsDuck from '../../ducks/Posts';
-import * as usersDuck from '../../ducks/Posts';
+import * as usersDuck from '../../ducks/Users';
 import services from "../../services";
 
 const { auth } = services

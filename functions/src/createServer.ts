@@ -43,7 +43,7 @@ export default () => {
         
     })
 
-    app.get('/posts/:postId/like', async (req: IRequest, res) => {
+    app.get('/api/posts/:postId/like', async (req: IRequest, res) => {
         const { uid } = req.user
         const { postId } = req.params
         const snaps = await db.collection('likes')
@@ -68,7 +68,7 @@ export default () => {
         res.sendStatus(204)
     })
     
-    app.get('/posts/:postId/share', async (req: IRequest, res) => {
+    app.get('/api/posts/:postId/share', async (req: IRequest, res) => {
         const { uid } = req.user
         const { postId } = req.params
         
@@ -90,6 +90,23 @@ export default () => {
 
         res.send({ id: result.id })
 
+    })
+
+    app.post('/api/posts/upload', async (req: IRequest, res) => {
+        const { uid } = req.user
+        const { comment } =  JSON.parse(req.body)
+        
+        if(!comment) {
+            res.status(422).send({error: 'missing param comment'})
+        }
+
+        const result = await db.collection('posts').add({
+            comment: comment,
+            userId: uid,
+            createdAt: new Date()
+        })
+
+        res.send({id: result.id})
     })
 
     return app 

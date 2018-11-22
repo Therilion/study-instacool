@@ -8,6 +8,8 @@ export interface IState {
         data: IDataPosts
         fetched: boolean
         fetching: boolean
+        uploading: boolean
+        uploaded: boolean
     }
     Users: {
         profileImage?: string
